@@ -12,7 +12,7 @@ The Home Assistant Assist CLI is a Python command-line application designed to i
 
 ## Installation
 
-If using a Windows machine, download the [latest release](https://github.com/yourusername/yourrepository/releases/latest). Then, create a .env file in the same directory as the executable with your Home Assistant access token and URL:
+If using a Windows machine, download the [latest release](https://github.com/falldeaf/cmdline-assist/releases/latest). Then, create a .env file in the same directory as the executable with your Home Assistant access token and URL:
 
 ```plaintext
 HATOKEN=your_access_token_here
