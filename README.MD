@@ -2,7 +2,6 @@
 
 The Home Assistant Assist CLI is a Python command-line application designed to interact with Home Assistant via the "Assist" pipeline. It enables users to send text intents directly to Home Assistant, facilitating seamless integration and control over smart home devices through terminal commands or interactive mode.
 
-screen shot of the app below
 ![Screenshot of my application](/screenshot.png "Application Screenshot")
 
 ## Features
@@ -12,6 +11,15 @@ screen shot of the app below
 - Authentication via access token for secure connection.
 
 ## Installation
+
+If using a Windows machine, download the [latest release](https://github.com/yourusername/yourrepository/releases/latest). Then, create a .env file in the same directory as the executable with your Home Assistant access token and URL:
+
+```plaintext
+HATOKEN=your_access_token_here
+HAURL=your_home_assistant_url_here
+```
+
+## Installation from source
 
 ### Prerequisites
 
