@@ -31,7 +31,7 @@ def on_message(ws, message):
 	if message_data.get("type") == "auth_required":
 		authenticate(ws)
 	elif message_data.get("type") == "auth_ok":
-		print("Authentication successful")
+		print("Connection established. Ready to assist! (Type 'exit' to quit)")
 		if len(sys.argv) > 1:
 			send_assist_intent(ws, sys.argv[1])
 			exit_handler(ws)
@@ -40,7 +40,9 @@ def on_message(ws, message):
 	elif message_data.get("type") == "event" and message_data.get("event", {}).get("type") == "intent-end":
 		speech_text = message_data["event"]["data"]["intent_output"]["response"]["speech"]["plain"]["speech"]
 		conversation_id = message_data["event"]["data"]["intent_output"]["conversation_id"]
-		print(f"🤖: {speech_text}")
+		# set text color to green
+		print(f"\033[92m🤖: {speech_text}\033[0m")
+		#print(f"🤖: {speech_text}")
 		response_received_event.set()  # Signal that the response has been received
 	elif message_data.get("type") == "error":
 		print(f"Error: {message_data.get('message')}")
@@ -52,7 +54,7 @@ def authenticate(ws):
 		"access_token": os.getenv("HATOKEN")
 	}
 	ws.send(json.dumps(auth_message))
-	print("Sent authentication message")
+	#print("Sent authentication message")
 
 def send_assist_intent(ws, text):
 	global response_received_event
@@ -94,9 +96,9 @@ if __name__ == "__main__":
 	ha_url = os.getenv("HAURL")
 	ws = websocket.WebSocketApp(f"ws://{ha_url}/api/websocket",
 								header={"Authorization": f"Bearer {ha_token}"},
-								on_open=lambda ws: print("Connection opened."),
+								# on_open=lambda ws: print("Connection opened."),
 								on_message=on_message,
-								on_error=lambda ws, error: print(f"Error: {error}"),
-								on_close=lambda ws, close_status_code, close_msg: print("### closed ###"))
+								on_error=lambda ws, error: print(f"Error: {error}"))
+								# on_close=lambda ws, close_status_code, close_msg: print("### closed ###"))
 	signal.signal(signal.SIGINT, lambda sig, frame: signal_handler(sig, frame, ws))
 	ws.run_forever()
