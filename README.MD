@@ -73,14 +73,7 @@ The `.env` file contains your configuration settings. Ensure your `HATOKEN` and 
 
 ## Contributing
 
-Contributions are welcome! If you have improvements or bug fixes, please follow the steps below:
-
-1. Fork the repository.
-2. Create a new branch for your feature or fix.
-3. Commit your changes with clear commit messages.
-4. Push to the branch.
-5. Create a Pull Request.
-
+Contributions are welcome! For major changes, please open an issue first to discuss what you would like to change.
 
 ## License
 
