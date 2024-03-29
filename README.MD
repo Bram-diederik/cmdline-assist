@@ -89,5 +89,3 @@ This project is licensed under the MIT License. For more information, see the [L
 ---
 
 For more information on Home Assistant and its capabilities, visit [Home Assistant's official website](https://www.home-assistant.io/).
-
-This format should be directly usable as your project's README.md. Feel free to adjust any part of it to better suit your project's specifics or personal preferences!
