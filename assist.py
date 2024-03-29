@@ -8,7 +8,26 @@ import os
 import uuid
 
 # Load environment variables
-load_dotenv()
+def load_environment_variables():
+	if getattr(sys, 'frozen', False):
+		# If the application is run as a bundled executable
+		application_path = os.path.dirname(sys.executable)
+	else:
+		# If it's a normal script execution
+		application_path = os.path.dirname(os.path.realpath(__file__))
+
+	# Construct the path to the .env file
+	env_file_path = os.path.join(application_path, '.env')
+
+	# Check if the .env file exists
+	if not os.path.isfile(env_file_path):
+		print(f"Error: .env file not found at {env_file_path}")
+		sys.exit(1)  # Exit the application with an error code
+
+	load_dotenv(env_file_path)
+
+# Call the function at the start of your script
+load_environment_variables()
 
 # Initialize a global ID counter
 message_id_counter = 1
