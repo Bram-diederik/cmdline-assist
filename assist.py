@@ -64,8 +64,11 @@ def on_message(ws, message):
 		#print(f"🤖: {speech_text}")
 		response_received_event.set()  # Signal that the response has been received
 	elif message_data.get("type") == "error":
-		print(f"Error: {message_data.get('message')}")
-		response_received_event.set()  # Signal in case of an error too
+		print(f"💀 Error: {message_data.get('message')}")
+		exit_handler(ws)
+	elif message_data.get("type") == "auth_invalid":
+		print(F"💀 Error: {message_data.get('message')}")
+		exit_handler(ws)
 
 def authenticate(ws):
 	auth_message = {
@@ -117,7 +120,7 @@ if __name__ == "__main__":
 								header={"Authorization": f"Bearer {ha_token}"},
 								# on_open=lambda ws: print("Connection opened."),
 								on_message=on_message,
-								on_error=lambda ws, error: print(f"Error: {error}"))
+								on_error=lambda ws, error: print(f"💀 Error: {error}"))
 								# on_close=lambda ws, close_status_code, close_msg: print("### closed ###"))
 	signal.signal(signal.SIGINT, lambda sig, frame: signal_handler(sig, frame, ws))
 	ws.run_forever()
