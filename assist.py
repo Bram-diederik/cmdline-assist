@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import websocket
 import json
 import threading
@@ -22,6 +23,9 @@ def load_environment_variables():
         load_dotenv(env_file_path)
 
 load_environment_variables()
+
+restart_on_exit =  os.getenv("RESTART",0)
+
 
 # Initialize a global ID counter
 message_id_counter = 1
@@ -94,12 +98,18 @@ def start_interactive_mode(ws):
         thread.start()
 
 def signal_handler(sig, frame, ws):
-        exit_handler(ws)
+        exit_handler(ws,1)
 
-def exit_handler(ws):
-        print('Exiting...')
-        ws.close()
-        sys.exit(0)
+def exit_handler(ws,code = 0):
+    ws.close()
+    for thread in threading.enumerate():
+        if thread is not threading.main_thread():
+            thread.join(timeout=1)  # Wait for non-main threads to exit
+    if restart_on_exit:
+        print("Restarting script...")
+        os.execv(sys.executable, [sys.executable] + sys.argv)  # Restart script
+    print('Exiting...')
+    sys.exit(code)
 
 if __name__ == "__main__":
         websocket.enableTrace(False)
