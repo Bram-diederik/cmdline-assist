@@ -58,7 +58,7 @@ To use the Assist CLI, run the script with Python from the command line. There a
 You can send a direct intent as an argument:
 
 ```plaintext
-python assist_cli.py "Turn on the living room lights"
+python assist.py "Turn on the living room lights"
 ```
 
 ### select agent
@@ -69,14 +69,14 @@ use --list-agents to list all agents and there ID's use the ID with --agent or i
 
 Run the script with out text to enter interactive mode, then type your intents:
 
-`python assist_cli.py`
+`python assist.py`
 Or 
-`python assist_cli.py --agent 123456789`
+`python assist.py --agent 123456789`
 
 Enter `exit` to quit interactive mode.
 
 ### Comandline mode 
-`python assist_cli.py "your command to the agent"`
+`python assist.py "your command to the agent"`
 Will directly send your responce. 
 use --cli for clean no additional information return
 use --new to start a new conversation 
