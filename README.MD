@@ -67,11 +67,20 @@ use --list-agents to list all agents and there ID's use the ID with --agent or i
 
 ### Interactive Mode
 
-Run the script without any arguments to enter interactive mode, then type your intents:
+Run the script with out text to enter interactive mode, then type your intents:
 
-python assist_cli.py
+`python assist_cli.py`
+Or 
+`python assist_cli.py --agent 123456789`
 
 Enter `exit` to quit interactive mode.
+
+### Comandline mode 
+`python assist_cli.py "your command to the agent"`
+Will directly send your responce. 
+use --cli for clean no additional information return
+use --new to start a new conversation 
+
 
 ## Configuration
 
