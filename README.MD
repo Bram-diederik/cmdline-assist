@@ -1,13 +1,3 @@
-# Bram Fork
-I added ssl 
-and a restart with ctrl-c option. usable if using the assist on tty12 service
-
-in the .env file
-```
-SSL=1
-RESTART=1
-```
-
 # Home Assistant Assist CLI
 
 The Home Assistant Assist CLI is a Python command-line application designed to interact with Home Assistant via the "Assist" pipeline. It enables users to send text intents directly to Home Assistant, facilitating seamless integration and control over smart home devices through terminal commands or interactive mode.
@@ -27,6 +17,8 @@ If using a Windows machine, download the [latest release](https://github.com/fal
 ```plaintext
 HATOKEN=your_access_token_here
 HAURL=your_home_assistant_url_here
+SSL=0/1; optional
+DEFAULT_AGENT=0123456789 ; optional
 ```
 
 ## Installation from source
@@ -68,6 +60,10 @@ You can send a direct intent as an argument:
 ```plaintext
 python assist_cli.py "Turn on the living room lights"
 ```
+
+### select agent
+
+use --list-agents to list all agents and there ID's use the ID with --agent or in your yaml
 
 ### Interactive Mode
 
