@@ -11,6 +11,7 @@ from pathlib import Path
 
 # Conversation memory storage
 CONVERSATION_FILE = Path.home() / ".ha_conversation_id"
+global args
 
 def load_conversation_id():
     if CONVERSATION_FILE.exists():
@@ -21,20 +22,22 @@ def save_conversation_id(conv_id):
     CONVERSATION_FILE.write_text(conv_id)
 
 # Load environment variables
-def load_environment_variables():
-    if getattr(sys, 'frozen', False):
-        application_path = os.path.dirname(sys.executable)
+def load_environment_variables(env_path=None):
+    if env_path:
+        env_file_path = env_path
     else:
-        application_path = os.path.dirname(os.path.realpath(__file__))
+        if getattr(sys, 'frozen', False):
+            application_path = os.path.dirname(sys.executable)
+        else:
+            application_path = os.path.dirname(os.path.realpath(__file__))
+        env_file_path = os.path.join(application_path, '.env')
 
-    env_file_path = os.path.join(application_path, '.env')
     if not os.path.isfile(env_file_path):
         print(f"Error: .env file not found at {env_file_path}", file=sys.stderr)
         sys.exit(1)
 
     load_dotenv(env_file_path)
 
-load_environment_variables()
 
 # Global variables
 message_id_counter = 1
@@ -202,8 +205,10 @@ if __name__ == "__main__":
     parser.add_argument('--new', '-n', action='store_true', help='Start a new conversation in --cli')
     parser.add_argument('--interactive', '-i', action='store_true', help='Stay in interactive mode after sending text')
     parser.add_argument('--cli', '-c', action='store_true', help='cli mode (no emoji, no status messages)')
-    global args
+    parser.add_argument('--env', help='Path to custom .env file')
     args = parser.parse_args()
+
+    load_environment_variables(args.env)
     
     list_agents_mode = args.list_agents
     

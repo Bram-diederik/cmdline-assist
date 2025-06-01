@@ -85,6 +85,7 @@ use --new to start a new conversation
 ## Configuration
 
 The `.env` file contains your configuration settings. Ensure your `HATOKEN` and `HAURL` are correctly set to communicate with your Home Assistant instance.
+`--env allows multiple .env files for multiple home assistant services 
 
 ## Contributing
 
