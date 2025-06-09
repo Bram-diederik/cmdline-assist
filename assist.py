@@ -124,7 +124,7 @@ def send_assist_intent(ws, text):
         "input": {
             "text": text
         },
-        "conversation_id": None if (not args.cli or args.new) else conversation_id
+        "conversation_id": None if args.new else conversation_id
     }
     
     if args.agent:
