@@ -192,8 +192,9 @@ if __name__ == "__main__":
     load_environment_variables(args.env)
     list_agents_mode = args.list_agents
     conversation_id = load_conversation_id()
-
-    signal.signal(signal.SIGINT, signal_handler)
+    if not args.agent:
+      args.agent = os.getenv("DEFAULT_AGENT")
+      signal.signal(signal.SIGINT, signal_handler)
 
     ha_token = os.getenv("HATOKEN")
     ha_url = os.getenv("HAURL")
