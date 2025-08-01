@@ -185,7 +185,7 @@ if __name__ == "__main__":
     parser.add_argument('--interactive', '-i', action='store_true', help='Stay in interactive mode')
     parser.add_argument('--cli', '-c', action='store_true', help='CLI mode (no emojis/status)')
     parser.add_argument('--env', help='Path to .env file')
-    parser.add_argument('--ci', '-conversationid', help='Provide session-specific conversation ID')
+    parser.add_argument('--conversationid', '-ci', help='Provide session-specific conversation ID')
 
     args = parser.parse_args()
     conversation_id_override = args.conversationid
