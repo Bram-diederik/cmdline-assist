@@ -1,4 +1,9 @@
-# Home Assistant Assist CLI
+# Home Assistant Assist 
+
+OKE I wrote new stuff. here is the current documentation https://www.youtube.com/watch?v=Awu635V2hI8
+
+
+## OLD README
 
 The Home Assistant Assist CLI is a Python command-line application designed to interact with Home Assistant via the "Assist" pipeline. It enables users to send text intents directly to Home Assistant, facilitating seamless integration and control over smart home devices through terminal commands or interactive mode.
 
