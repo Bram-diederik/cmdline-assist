@@ -1,0 +1,74 @@
+# Dashboard configuration for HA CLI Dashboard
+# Layout organized in stacks to match the recursive builder in the script
+
+layout:
+  - type: "horizontal-stack"
+    cards:
+      - entity: "media_player.speaker_huiskamer"
+        name: "Living Room"
+        icon: "🔊"
+        secondary_info: "{{ (state_attr('media_player.speaker_huiskamer', 'media_title') or 'Idle' )[:32]}}"
+      - entity: "media_player.speaker_slaapkamer"
+        name: "Bedroom"
+        icon: "🔊"
+        secondary_info: "{{ (state_attr('media_player.speaker_slaapkamer', 'media_title') or 'Idle')[:32] }}"
+      - entity: "media_player.speaker_study"
+        name: "Study"
+        icon: "🔊"
+        secondary_info: "{{ (state_attr('media_player.speaker_study', 'media_title') or 'Idle')[:32]}}"
+  - type: "horizontal-stack"
+    cards:
+      - entity: "climate.core_mosquitto_diyless_thermostat"
+        name: "Thermostat"
+        icon: "🌡️"
+        secondary_info: "Target: {{ state_attr('climate.core_mosquitto_diyless_thermostat', 'temperature') }}°C"
+      - entity: "weather.forecast_home"
+        name: "Weather"
+        icon: "☁️"
+        secondary_info: "{{ states('sensor.knmi_weersverwachting') }}%"
+  - type: "horizontal-stack"
+    cards:
+      - entity: "sensor.minion_temperatuur"
+        name: "Woonkamer"
+        icon: "🌡 "
+        secondary_info: "Vochtigheid {{ states('sensor.minion_luchtvochtigheid') }}"
+      - entity: "sensor.pion_temperatuur"
+        name: "slaapkamer"
+        icon: "🌡 "
+        secondary_info: "Vochtigheid {{ states('sensor.pion_luchtvochtigheid') }}"
+      - entity: "sensor.temperatuur_study_temperatuur"
+        name: "study"
+        icon: "🌡 "
+        secondary_info: "Vochtigheid {{ states('sensor.temperatuur_study_luchtvochtigheid') }}"
+  - type: "horizontal-stack"
+    cards:
+      - type: graph
+        entity: sensor.minion_temperatuur
+        title: "Temp"
+        begin: "-24h"
+        height: 8
+        width: 45
+        end: None
+      - type: graph
+        entity: sensor.minion_luchtvochtigheid
+        title: "Luchtvochtigheid"
+        begin: "-24h"
+        end: None
+        height: 8   
+        width: 45
+      - type: graph
+        entity: weather.forecast_home
+        title: "Temp Buiten"
+        attribute: temperature 
+        begin: "-24h"
+        end: None
+        height: 8   
+        width: 45
+      - type: graph
+        entity: weather.forecast_home
+        title: "Lucht V Buiten"
+        attribute: humidity 
+        begin: "-24h"
+        end: None
+        height: 8   
+        width: 45

@@ -1,0 +1,50 @@
+# Dashboard configuration for HA CLI Dashboard
+# Layout organized in stacks to match the recursive builder in the script
+
+layout:
+  - type: "horizontal-stack"
+    cards:
+      - entity: "media_player.speaker_huiskamer"
+        name: "Living Room"
+        icon: "🔊"
+        secondary_info: "{{ (state_attr('media_player.speaker_huiskamer', 'media_title') or 'Idle' )[:32]}}"
+      - entity: "media_player.speaker_slaapkamer"
+        name: "Bedroom"
+        icon: "🔊"
+        secondary_info: "{{ (state_attr('media_player.speaker_slaapkamer', 'media_title') or 'Idle')[:32] }}"
+      - entity: "media_player.speaker_study"
+        name: "Study"
+        icon: "🔊"
+        secondary_info: "{{ (state_attr('media_player.speaker_study', 'media_title') or 'Idle')[:32]}}"
+  - type: "horizontal-stack"
+    cards:
+      - entity: "light.verlichting_woonkamer"
+        name: "Lights"
+        icon: "💡"
+        secondary_info: "Bri: {{ state_attr('light.verlichting_woonkamer', 'brightness') or 0 }}"
+      - entity: "climate.core_mosquitto_diyless_thermostat"
+        name: "Thermostat"
+        icon: "🌡️"
+        secondary_info: "Target: {{ state_attr('climate.core_mosquitto_diyless_thermostat', 'temperature') }}°C"
+      - entity: "weather.forecast_home"
+        name: "Weather"
+        icon: "☁️"
+        secondary_info: "Hum: {{ state_attr('weather.forecast_home', 'humidity') }}%"
+  - type: "horizontal-stack"
+    cards:
+      - entity: "light.verlichting_woonkamer"
+        name: "Lights"
+        icon: "💡"
+        secondary_info: "Bri: {{ state_attr('light.verlichting_woonkamer', 'brightness') or 0 }}"
+  - type: "horizontal-stack"
+    cards:
+      - entity: "climate.core_mosquitto_diyless_thermostat"
+        name: "Thermostat"
+        icon: "🌡️"
+        secondary_info: "Target: {{ state_attr('climate.core_mosquitto_diyless_thermostat', 'temperature') }}°C"
+#  - type: "horizontal-stack"
+#    cards:
+#      - entity: "climate.core_mosquitto_diyless_thermostat"
+#        name: "Thermostat"
+#        icon: "🌡️"
+#        secondary_info: "Target: {{ state_attr('climate.core_mosquitto_diyless_thermostat', 'temperature') }}°C"

@@ -1,0 +1,18 @@
+# Dashboard configuration for HA CLI Dashboard
+# Layout organized in stacks to match the recursive builder in the script
+
+layout:
+  - type: "horizontal-stack"
+    cards:
+      - entity: "media_player.speaker_huiskamer"
+        name: "Living Room"
+        icon: "🔊"
+        secondary_info: "{{ (state_attr('media_player.speaker_huiskamer', 'media_title') or 'Idle' )[:32]}}"
+      - entity: "media_player.speaker_slaapkamer"
+        name: "Bedroom"
+        icon: "🔊"
+        secondary_info: "{{ (state_attr('media_player.speaker_slaapkamer', 'media_title') or 'Idle')[:32] }}"
+      - entity: "media_player.speaker_study"
+        name: "Study"
+        icon: "🔊"
+        secondary_info: "{{ (state_attr('media_player.speaker_study', 'media_title') or 'Idle')[:32]}}"
