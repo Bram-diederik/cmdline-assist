@@ -3,6 +3,12 @@
 OKE I wrote new stuff. here is the current documentation https://www.youtube.com/watch?v=Awu635V2hI8
 
 
+```
+ sudo apt install tmux python3-dateutil python3-dateutil python3-jinja2 python3-rich python3-yaml python3-websocket python3-dotenv
+```
+
+
+
 ## OLD README
 
 The Home Assistant Assist CLI is a Python command-line application designed to interact with Home Assistant via the "Assist" pipeline. It enables users to send text intents directly to Home Assistant, facilitating seamless integration and control over smart home devices through terminal commands or interactive mode.
